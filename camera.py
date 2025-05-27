@@ -32,15 +32,21 @@ if uploaded_file is not None:
 
     with st.spinner("Classifying..."):
         prediction = predict_image(image_path, model, transform, class_names)
+        try:
+            prediction = prediction.split('_')
+            prediction.remove('')
+            predict_image.remove('Cassave')
+        except:
+            if not isinstance(predict_image, list):
+                prediction = [prediction]
+    st.success(f"**Prediction:** {' '.join(predict_image)}")
 
-    st.success(f"**Prediction:** {prediction}")
-
-    # Optional: show all class names attractively
-    st.markdown("#### Available Classes")
-    st.markdown(
-        " | ".join(f"**{cls}**" for cls in class_names),
-        unsafe_allow_html=True
-    )
+    # # Optional: show all class names attractively
+    # st.markdown("#### Available Classes")
+    # st.markdown(
+    #     " | ".join(f"**{cls}**" for cls in class_names),
+    #     unsafe_allow_html=True
+    # )
 
     # Clean up temp file
     os.remove(image_path)

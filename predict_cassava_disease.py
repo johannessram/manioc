@@ -34,5 +34,3 @@ def predict_image(image_path, model, transform, class_names=class_names):
     print(f"Prediction: {class_names[predicted.item()]}")
     return str(class_names[predicted.item()])
 
-# model = load_model()
-# predict_image('test/test.jpeg')
