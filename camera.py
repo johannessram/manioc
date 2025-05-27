@@ -1,3 +1,6 @@
+os.environ["STREAMLIT_WATCHER_TYPE"] = "none"
+
+
 import streamlit as st
 from PIL import Image
 import tempfile
@@ -6,10 +9,6 @@ import os
 # Import your own utilities
 from predict_cassava_disease import predict_image, load_model, transform, class_names  # adjust this to your actual module
 
-st.markdown(
-    "<div style='text-align: center;'><img src='logo.png' width='150'></div>",
-    unsafe_allow_html=True
-)
 
 # Load model
 @st.cache_resource
@@ -19,6 +18,11 @@ def _load_model(path='cassava_model.pth'):
 
 # App config
 st.set_page_config(page_title="Image Classifier", page_icon="logo.png", layout="centered")
+
+st.markdown(
+    "<div style='text-align: center;'><img src='logo.png' width='150'></div>",
+    unsafe_allow_html=True
+)
 st.title("🎯 PyTorch Image Classifier")
 st.markdown("Upload an image and let the model classify it into one of the categories.")
 
