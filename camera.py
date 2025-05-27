@@ -21,7 +21,7 @@ def _load_model(path='cassava_model.pth'):
 
 # App config
 st.set_page_config(page_title="Image Classifier", page_icon="logo.png", layout="centered")
-cols = st.columns(2, 3, 2)
+cols = st.columns([2, 3, 2])
 with cols[1]:
     st.image("logo.png", width=150)
 st.title("🎯 PyTorch Image Classifier")
