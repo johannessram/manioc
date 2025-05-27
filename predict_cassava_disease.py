@@ -13,7 +13,7 @@ def load_model(path='cassava_model.pth'):
     model = models.resnet18(weights=None)
     model.fc = nn.Linear(model.fc.in_features, 5)
     model.load_state_dict(torch.load(path))
-    model = model.to(device)
+    # model = model.to(device)
     model.eval()
     return model
 
