@@ -1,10 +1,10 @@
+import os
 os.environ["STREAMLIT_WATCHER_TYPE"] = "none"
 
 
 import streamlit as st
 from PIL import Image
 import tempfile
-import os
 
 # Import your own utilities
 from predict_cassava_disease import predict_image, load_model, transform, class_names  # adjust this to your actual module
