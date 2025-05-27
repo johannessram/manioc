@@ -12,7 +12,7 @@ def load_model(path='cassava_model.pth'):
     # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = models.resnet18(weights=None)
     model.fc = nn.Linear(model.fc.in_features, 5)
-    model.load_state_dict(torch.load(path))
+    model.load_state_dict(torch.load(path, map_location=torch.device('cpu')))
     # model = model.to(device)
     model.eval()
     return model
