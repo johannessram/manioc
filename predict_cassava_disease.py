@@ -1,3 +1,7 @@
+import os
+os.environ["STREAMLIT_WATCHER_TYPE"] = "none"
+
+
 from torchvision import transforms, models
 from PIL import Image
 import torch

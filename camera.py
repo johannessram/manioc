@@ -43,7 +43,7 @@ if uploaded_file is not None:
         except:
             if not isinstance(predict_image, list):
                 prediction = [prediction]
-    st.success(f"**Prediction:** {' '.join(predict_image)}")
+    st.success(f"**Prediction:** {' '.join(prediction)}")
 
     # # Optional: show all class names attractively
     # st.markdown("#### Available Classes")
