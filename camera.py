@@ -18,11 +18,6 @@ def _load_model(path='cassava_model.pth'):
 
 # App config
 st.set_page_config(page_title="Image Classifier", page_icon="logo.png", layout="centered")
-
-st.markdown(
-    "<div style='text-align: center;'><img src='logo.png' width='150'></div>",
-    unsafe_allow_html=True
-)
 st.title("🎯 PyTorch Image Classifier")
 st.markdown("Upload an image and let the model classify it into one of the categories.")
 
