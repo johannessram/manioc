@@ -24,6 +24,34 @@ st.set_page_config(page_title="Image Classifier", page_icon="logo.png", layout="
 cols = st.columns([2, 3, 2])
 with cols[1]:
     st.image("logo.png", width=150)
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #1e293b;
+        color: white;
+    }
+
+    .stApp {
+        background-color: #1e293b;
+    }
+
+    .stMarkdown, .stText, .stTitle, .stHeader, .stSubheader, .stCaption {
+        color: white;
+    }
+
+    .css-18e3th9 {  /* main content container */
+        background-color: #1e293b;
+    }
+
+    .css-1d391kg {  /* sidebar */
+        background-color: #1e293b;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("🎯 PyTorch Image Classifier")
 st.markdown("Upload an image and let the model classify it into one of the categories.")
 
