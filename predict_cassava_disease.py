@@ -9,7 +9,7 @@ class_names = ['Cassava__bacterial_blight', 'Cassava__brown_streak_disease', 'Ca
 
 def load_model(path='cassava_model.pth'):
     # load model saved earlier 
-    # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
     model = models.resnet18(weights=None)
     model.fc = nn.Linear(model.fc.in_features, 5)
     model.load_state_dict(torch.load(path, map_location=torch.device('cpu')))
@@ -26,7 +26,7 @@ transform = transforms.Compose([
 
 def predict_image(image_path, model, transform, class_names=class_names):
     image = Image.open(image_path).convert("RGB")
-    image = transform(image).unsqueeze(0).to(device)
+    image = transform(image).unsqueeze(0).to(torch.device('cpu'))
     model.eval()
     with torch.no_grad():
         output = model(image)
