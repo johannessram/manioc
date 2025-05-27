@@ -23,11 +23,11 @@ st.markdown("Upload an image and let the model classify it into one of the categ
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+st.image(image, caption="Uploaded Image", use_container_width=True)
 model = _load_model()
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_container_width=True)
 
     # Save the uploaded image temporarily
     with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp_file:
@@ -45,12 +45,4 @@ if uploaded_file is not None:
                 prediction = [prediction]
     st.success(f"**Prediction:** {' '.join(prediction)}")
 
-    # # Optional: show all class names attractively
-    # st.markdown("#### Available Classes")
-    # st.markdown(
-    #     " | ".join(f"**{cls}**" for cls in class_names),
-    #     unsafe_allow_html=True
-    # )
-
-    # Clean up temp file
     os.remove(image_path)
