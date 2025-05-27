@@ -5,7 +5,7 @@ import tempfile
 import os
 
 # Import your own utilities
-from predict_cassava_disease import predict_image, load_model, transform, dataset_classes  # adjust this to your actual module
+from predict_cassava_disease import predict_image, load_model, transform, class_names  # adjust this to your actual module
 
 # Load model
 @st.cache_resource
@@ -37,14 +37,14 @@ if uploaded_file is not None:
         image.save(image_path)
 
     with st.spinner("Classifying..."):
-        prediction = predict_image(image_path, model, transform, dataset_classes)
+        prediction = predict_image(image_path, model, transform, class_names_classes)
 
     st.success(f"**Prediction:** {prediction}")
 
     # Optional: show all class names attractively
     st.markdown("#### Available Classes")
     st.markdown(
-        " | ".join(f"**{cls}**" for cls in dataset_classes),
+        " | ".join(f"**{cls}**" for cls in class_names_classes),
         unsafe_allow_html=True
     )
 
