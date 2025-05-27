@@ -6,6 +6,11 @@ import os
 # Import your own utilities
 from predict_cassava_disease import predict_image, load_model, transform, class_names  # adjust this to your actual module
 
+st.markdown(
+    "<div style='text-align: center;'><img src='logo.png' width='150'></div>",
+    unsafe_allow_html=True
+)
+
 # Load model
 @st.cache_resource
 def _load_model(path='cassava_model.pth'):
