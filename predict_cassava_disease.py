@@ -1,4 +1,4 @@
-from torchvision import datasets, transforms, models
+from torchvision import transforms, models
 from PIL import Image
 
 
@@ -7,6 +7,7 @@ class_names = ['Cassava__bacterial_blight', 'Cassava__brown_streak_disease', 'Ca
 
 def load_model(path='cassava_model.pth'):
     # load model saved earlier 
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = models.resnet18(weights=None)
     model.fc = nn.Linear(model.fc.in_features, 5)
     model.load_state_dict(torch.load(path))

@@ -9,14 +9,9 @@ from predict_cassava_disease import predict_image, load_model, transform, class_
 
 # Load model
 @st.cache_resource
-def load_model(path='cassava_model.pth'):
+def _load_model(path='cassava_model.pth'):
     # load model saved earlier 
-    model = models.resnet18(weights=None)
-    model.fc = nn.Linear(model.fc.in_features, 5)
-    model.load_state_dict(torch.load(path))
-    model = model.to(device)
-    model.eval()
-    return model
+    return load_model()
 
 # App config
 st.set_page_config(page_title="Image Classifier", page_icon="🔍", layout="centered")
@@ -25,7 +20,7 @@ st.markdown("Upload an image and let the model classify it into one of the categ
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-model = load_model()
+model = _load_model()
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
@@ -37,14 +32,14 @@ if uploaded_file is not None:
         image.save(image_path)
 
     with st.spinner("Classifying..."):
-        prediction = predict_image(image_path, model, transform, class_names_classes)
+        prediction = predict_image(image_path, model, transform, class_names)
 
     st.success(f"**Prediction:** {prediction}")
 
     # Optional: show all class names attractively
     st.markdown("#### Available Classes")
     st.markdown(
-        " | ".join(f"**{cls}**" for cls in class_names_classes),
+        " | ".join(f"**{cls}**" for cls in class_names),
         unsafe_allow_html=True
     )
 
