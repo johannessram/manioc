@@ -1,6 +1,9 @@
 import os
 os.environ["STREAMLIT_WATCHER_TYPE"] = "none"
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+logo_path = os.path.join(HERE, "logo.png")
+
 
 import streamlit as st
 from PIL import Image
@@ -18,17 +21,18 @@ def _load_model(path='cassava_model.pth'):
 
 # App config
 st.set_page_config(page_title="Image Classifier", page_icon="logo.png", layout="centered")
-st.image("logo.png", width=150)
-# st.markdown(
-#     """<style>
-#         img {
-#             display: block;
-#             margin-left: auto;
-#             margin-right: auto;
-#         }
-#     </style>""",
-#     unsafe_allow_html=True
-# )
+# st.image("logo.png", width=150)
+st.markdown(
+    """<style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <div style="text-align: center"> <img src="{}"></div>""".format(logo_path),
+    unsafe_allow_html=True
+)
 st.title("🎯 PyTorch Image Classifier")
 st.markdown("Upload an image and let the model classify it into one of the categories.")
 
