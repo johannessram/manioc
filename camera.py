@@ -39,7 +39,7 @@ if uploaded_file is not None:
         try:
             prediction = prediction.split('_')
             prediction.remove('')
-            predict_image.remove('Cassave')
+            prediction.remove('Cassava')
         except:
             if not isinstance(predict_image, list):
                 prediction = [prediction]
