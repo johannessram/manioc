@@ -71,5 +71,5 @@ if uploaded_file is not None:
     with st.spinner("Classifying..."):
         prediction = predict_image(image_path, model, transform, class_names)
         details_ = details.get(prediction, "")
-    st.write(details_)
+        st.write(details_)
     os.remove(image_path)
