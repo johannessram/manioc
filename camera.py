@@ -71,13 +71,5 @@ if uploaded_file is not None:
     with st.spinner("Classifying..."):
         prediction = predict_image(image_path, model, transform, class_names)
         details_ = details.get(prediction, "")
-        try:
-            prediction = prediction.split('_')
-            prediction.remove('')
-            prediction.remove('Cassava')
-        except:
-            if not isinstance(predict_image, list):
-                prediction = [prediction]
-    st.write(f"### **Prediction:** {' '.join(prediction)}")
     st.write(details_)
     os.remove(image_path)
