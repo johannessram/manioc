@@ -11,7 +11,7 @@ import tempfile
 
 # Import your own utilities
 from predict_cassava_disease import predict_image, load_model, transform, class_names  # adjust this to your actual module
-
+from details import details
 
 # Load model
 @st.cache_resource
@@ -70,6 +70,7 @@ if uploaded_file is not None:
 
     with st.spinner("Classifying..."):
         prediction = predict_image(image_path, model, transform, class_names)
+        details = details.get(prediction, "No disease detected")
         try:
             prediction = prediction.split('_')
             prediction.remove('')
@@ -78,4 +79,5 @@ if uploaded_file is not None:
             if not isinstance(predict_image, list):
                 prediction = [prediction]
     st.write(f"**Prediction:** {' '.join(prediction)}")
+    st.markdown(details)
     os.remove(image_path)
