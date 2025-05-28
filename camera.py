@@ -70,7 +70,7 @@ if uploaded_file is not None:
 
     with st.spinner("Classifying..."):
         prediction = predict_image(image_path, model, transform, class_names)
-        details_ = details.get(prediction, "No disease detected")
+        details_ = details.get(prediction, "")
         try:
             prediction = prediction.split('_')
             prediction.remove('')
