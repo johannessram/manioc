@@ -78,6 +78,6 @@ if uploaded_file is not None:
         except:
             if not isinstance(predict_image, list):
                 prediction = [prediction]
-    st.write(f"**Prediction:** {' '.join(prediction)}")
+    st.write(f"### **Prediction:** {' '.join(prediction)}")
     st.write(details_)
     os.remove(image_path)
